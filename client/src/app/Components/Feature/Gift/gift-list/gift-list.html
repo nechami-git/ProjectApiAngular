@@ -1,0 +1,124 @@
+<div class="page-container">
+    <p-toast position="top-right" [style]="{marginTop: '80px', zIndex: 10001}"></p-toast>
+    <div class="main-container w-10 lg:w-8">
+
+        <div class="glass-card search-header mb-5 p-4 surface-0 border-round-2xl shadow-4 relative overflow-hidden">
+            <!-- Decorative accent -->
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-gold"></div>
+
+            <div class="flex flex-column xl:flex-row justify-content-between align-items-center gap-4 relative z-2">
+                
+                <!-- Title Section -->
+                <div class="flex align-items-center gap-3 w-full xl:w-auto justify-content-center xl:justify-content-start">
+                    <div class="bg-primary-50 p-3 border-circle shadow-1 flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                        <i class="pi pi-gift text-2xl text-primary"></i>
+                    </div>
+                    <div>
+                        <h1 class="m-0 text-3xl font-bold text-800">המתנות שלנו</h1>
+                        <p class="m-0 text-500 text-sm">בחרו את המתנה בה תרצו לזכות</p>
+                    </div>
+                </div>
+
+                <!-- Filters Section -->
+                <div class="flex-1 w-full xl:w-auto">
+                    <div class="flex flex-column md:flex-row gap-3 justify-content-end align-items-stretch md:align-items-center bg-white-alpha-50 p-3 border-round-xl">
+                        
+                        <div class="p-input-icon-right flex-1">
+                            <i class="pi pi-search text-500"></i>
+                            <input type="text" pInputText placeholder= " שם מתנה..." 
+                                   class="w-full border-round-2xl surface-ground border-none py-3 px-3 shadow-1 focus:shadow-3 transition-all"
+                                   [(ngModel)]="filter.name" (keyup.enter)="getAll()">
+                        </div>
+
+                        <div class="p-input-icon-right flex-1">
+                            <i class="pi pi-tag text-500"></i>
+                            <input type="text" pInputText placeholder="קטגוריה..." 
+                                   class="w-full border-round-2xl surface-ground border-none py-3 px-3 shadow-1 focus:shadow-3 transition-all"
+                                   [(ngModel)]="filter.CategoryName" (keyup.enter)="getAll()">
+                        </div>
+
+                        <div class="p-input-icon-right w-full md:w-8rem">
+                            <i class="pi pi-ticket text-500"></i>
+                            <input type="number" pInputText placeholder="מחיר מקס'" 
+                                   class="w-full border-round-2xl surface-ground border-none py-3 px-3 shadow-1 focus:shadow-3 transition-all"
+                                   [(ngModel)]="filter.TicketPrice" (keyup.enter)="getAll()">
+                        </div>
+
+                        <div class="flex gap-2 justify-content-center">
+                            <button pButton icon="pi pi-search" 
+                                    class="custom-gold-btn border-circle w-3rem h-3rem p-0 shadow-2" 
+                                    (click)="getAll()" pTooltip="חפש"></button>
+                            
+                            <button pButton icon="pi pi-refresh" 
+                                    class="p-button-rounded p-button-text p-button-secondary w-3rem h-3rem p-0 hover:bg-surface-200"
+                                    (click)="clearFilter()" pTooltip="נקה סינון"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p-dataView #dv [value]="gifts" [paginator]="true" [rows]="9" layout="grid">
+
+            <ng-template let-items pTemplate="gridItem">
+                <div class="grid grid-nogutter w-full">
+                    <div class="col-12 md:col-6 lg:col-4 p-3" *ngFor="let gift of items">
+
+                        <div class="gift-card surface-card shadow-2 p-3 border-round h-full flex flex-column justify-content-between">
+                            
+                            <div>
+                                <div class="gift-image-container relative mb-3">
+                                    <div class="placeholder-img flex align-items-center justify-content-center bg-gray-100 border-round">
+                                        <img *ngIf="gift.image" [src]="gift.image" class="w-full border-round"
+                                            style="height: 200px; object-fit: cover;"
+                                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+                                        <i class="pi pi-gift text-6xl text-primary-light" [style.display]="gift.image ? 'none' : 'block'"></i>
+                                    </div>
+                                    <span class="price-tag shadow-2">
+                                        <i class="pi pi-ticket ml-1"></i> {{ gift?.ticketPrice }} ₪
+                                    </span>
+                                </div>
+
+                                <div class="gift-details text-center">
+                                    <div class="text-xl font-bold text-900 mb-1">{{ gift?.name }}</div>
+                                    <div class="text-600 mb-2">{{ gift?.description }}</div>
+                                    <div class="text-600 text-sm mb-3">
+                                        תרומת: <span>{{ gift.donorName }}</span>
+                                    </div>
+                                    <div class="flex align-items-center justify-content-center gap-2 mb-3">
+                                        <div class="gift-price-badge">
+                                            <i class="pi pi-ticket"></i>
+                                            <span class="price-value">{{ gift.ticketPrice || 0 }}</span>
+                                            <span class="currency">₪</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-3">
+                                @if(isRaffled(gift)) {
+                                    <div class="gift-winner-bar flex align-items-center justify-content-center gap-3 p-3 border-round mb-2 bg-green-100">
+                                        <i class="pi pi-star gift-winner-icon"></i>
+                                        <span class="text-green-900 font-bold text-lg">זוכה: {{ gift.winnerName }}</span>
+                                    </div>
+                                }
+
+                                <button pButton pRipple label="לרכישת כרטיס" icon="pi pi-shopping-cart"
+                                    class="gift-buy-button w-full font-bold text-lg p-button-primary custom-gold-btn"
+                                    (click)="addToCart({ giftId: gift.id, quantity: 1 })" 
+                                   [disabled]="isRaffled(gift) || !authService.isLoggedIn()">
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+
+            <ng-template pTemplate="empty">
+                <div class="text-center p-5 w-full">לא נמצאו מתנות...</div>
+            </ng-template>
+
+        </p-dataView>
+    </div>
+</div>

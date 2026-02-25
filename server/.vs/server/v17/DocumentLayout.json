@@ -1,0 +1,213 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\\u05E0\u05D7\u05DE\u05D9\\ProjectApiAngular\\server\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{15DB4E05-91AA-434C-859D-0863A8F244F1}|server\\server.csproj|d:\\\u05E0\u05D7\u05DE\u05D9\\projectapiangular\\server\\server\\dal\\donordal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15DB4E05-91AA-434C-859D-0863A8F244F1}|server\\server.csproj|solutionrelative:server\\dal\\donordal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15DB4E05-91AA-434C-859D-0863A8F244F1}|server\\server.csproj|d:\\\u05E0\u05D7\u05DE\u05D9\\projectapiangular\\server\\server\\bll\\donorbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15DB4E05-91AA-434C-859D-0863A8F244F1}|server\\server.csproj|solutionrelative:server\\bll\\donorbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15DB4E05-91AA-434C-859D-0863A8F244F1}|server\\server.csproj|d:\\\u05E0\u05D7\u05DE\u05D9\\projectapiangular\\server\\server\\controllers\\donorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15DB4E05-91AA-434C-859D-0863A8F244F1}|server\\server.csproj|solutionrelative:server\\controllers\\donorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15DB4E05-91AA-434C-859D-0863A8F244F1}|server\\server.csproj|d:\\\u05E0\u05D7\u05DE\u05D9\\projectapiangular\\server\\server\\exceptions\\domainexceptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15DB4E05-91AA-434C-859D-0863A8F244F1}|server\\server.csproj|solutionrelative:server\\exceptions\\domainexceptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15DB4E05-91AA-434C-859D-0863A8F244F1}|server\\server.csproj|d:\\\u05E0\u05D7\u05DE\u05D9\\projectapiangular\\server\\server\\middleware\\errorloggingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15DB4E05-91AA-434C-859D-0863A8F244F1}|server\\server.csproj|solutionrelative:server\\middleware\\errorloggingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15DB4E05-91AA-434C-859D-0863A8F244F1}|server\\server.csproj|d:\\\u05E0\u05D7\u05DE\u05D9\\projectapiangular\\server\\server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15DB4E05-91AA-434C-859D-0863A8F244F1}|server\\server.csproj|solutionrelative:server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15DB4E05-91AA-434C-859D-0863A8F244F1}|server\\server.csproj|d:\\\u05E0\u05D7\u05DE\u05D9\\projectapiangular\\server\\server\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15DB4E05-91AA-434C-859D-0863A8F244F1}|server\\server.csproj|solutionrelative:server\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15DB4E05-91AA-434C-859D-0863A8F244F1}|server\\server.csproj|d:\\\u05E0\u05D7\u05DE\u05D9\\projectapiangular\\server\\server\\controllers\\giftcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15DB4E05-91AA-434C-859D-0863A8F244F1}|server\\server.csproj|solutionrelative:server\\controllers\\giftcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15DB4E05-91AA-434C-859D-0863A8F244F1}|server\\server.csproj|d:\\\u05E0\u05D7\u05DE\u05D9\\projectapiangular\\server\\server\\saleprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15DB4E05-91AA-434C-859D-0863A8F244F1}|server\\server.csproj|solutionrelative:server\\saleprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15DB4E05-91AA-434C-859D-0863A8F244F1}|server\\server.csproj|d:\\\u05E0\u05D7\u05DE\u05D9\\projectapiangular\\server\\server\\dal\\userdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15DB4E05-91AA-434C-859D-0863A8F244F1}|server\\server.csproj|solutionrelative:server\\dal\\userdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15DB4E05-91AA-434C-859D-0863A8F244F1}|server\\server.csproj|d:\\\u05E0\u05D7\u05DE\u05D9\\projectapiangular\\server\\server\\bll\\userbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15DB4E05-91AA-434C-859D-0863A8F244F1}|server\\server.csproj|solutionrelative:server\\bll\\userbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15DB4E05-91AA-434C-859D-0863A8F244F1}|server\\server.csproj|d:\\\u05E0\u05D7\u05DE\u05D9\\projectapiangular\\server\\server\\models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15DB4E05-91AA-434C-859D-0863A8F244F1}|server\\server.csproj|solutionrelative:server\\models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DonorDAL.cs",
+              "DocumentMoniker": "D:\\\u05E0\u05D7\u05DE\u05D9\\ProjectApiAngular\\server\\server\\DAL\\DonorDAL.cs",
+              "RelativeDocumentMoniker": "server\\DAL\\DonorDAL.cs",
+              "ToolTip": "D:\\\u05E0\u05D7\u05DE\u05D9\\ProjectApiAngular\\server\\server\\DAL\\DonorDAL.cs",
+              "RelativeToolTip": "server\\DAL\\DonorDAL.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAqwCMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-20T14:36:43.571Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DonorBLL.cs",
+              "DocumentMoniker": "D:\\\u05E0\u05D7\u05DE\u05D9\\ProjectApiAngular\\server\\server\\BLL\\DonorBLL.cs",
+              "RelativeDocumentMoniker": "server\\BLL\\DonorBLL.cs",
+              "ToolTip": "D:\\\u05E0\u05D7\u05DE\u05D9\\ProjectApiAngular\\server\\server\\BLL\\DonorBLL.cs",
+              "RelativeToolTip": "server\\BLL\\DonorBLL.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-20T14:36:26.636Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DonorController.cs",
+              "DocumentMoniker": "D:\\\u05E0\u05D7\u05DE\u05D9\\ProjectApiAngular\\server\\server\\Controllers\\DonorController.cs",
+              "RelativeDocumentMoniker": "server\\Controllers\\DonorController.cs",
+              "ToolTip": "D:\\\u05E0\u05D7\u05DE\u05D9\\ProjectApiAngular\\server\\server\\Controllers\\DonorController.cs",
+              "RelativeToolTip": "server\\Controllers\\DonorController.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAADwvyAAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-20T14:33:40.688Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ErrorLoggingMiddleware.cs",
+              "DocumentMoniker": "D:\\\u05E0\u05D7\u05DE\u05D9\\ProjectApiAngular\\server\\server\\Middleware\\ErrorLoggingMiddleware.cs",
+              "RelativeDocumentMoniker": "server\\Middleware\\ErrorLoggingMiddleware.cs",
+              "ToolTip": "D:\\\u05E0\u05D7\u05DE\u05D9\\ProjectApiAngular\\server\\server\\Middleware\\ErrorLoggingMiddleware.cs",
+              "RelativeToolTip": "server\\Middleware\\ErrorLoggingMiddleware.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-20T13:56:33.964Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DomainExceptions.cs",
+              "DocumentMoniker": "D:\\\u05E0\u05D7\u05DE\u05D9\\ProjectApiAngular\\server\\server\\Exceptions\\DomainExceptions.cs",
+              "RelativeDocumentMoniker": "server\\Exceptions\\DomainExceptions.cs",
+              "ToolTip": "D:\\\u05E0\u05D7\u05DE\u05D9\\ProjectApiAngular\\server\\server\\Exceptions\\DomainExceptions.cs",
+              "RelativeToolTip": "server\\Exceptions\\DomainExceptions.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAAwCQAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-20T13:53:33.809Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\\u05E0\u05D7\u05DE\u05D9\\ProjectApiAngular\\server\\server\\Program.cs",
+              "RelativeDocumentMoniker": "server\\Program.cs",
+              "ToolTip": "D:\\\u05E0\u05D7\u05DE\u05D9\\ProjectApiAngular\\server\\server\\Program.cs",
+              "RelativeToolTip": "server\\Program.cs",
+              "ViewState": "AgIAAI4AAAAAAAAAAAAowKAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-19T16:24:26.721Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "GiftController.cs",
+              "DocumentMoniker": "D:\\\u05E0\u05D7\u05DE\u05D9\\ProjectApiAngular\\server\\server\\Controllers\\GiftController.cs",
+              "RelativeDocumentMoniker": "server\\Controllers\\GiftController.cs",
+              "ToolTip": "D:\\\u05E0\u05D7\u05DE\u05D9\\ProjectApiAngular\\server\\server\\Controllers\\GiftController.cs",
+              "RelativeToolTip": "server\\Controllers\\GiftController.cs",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAAwHkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-19T16:20:02.03Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SaleProfile.cs",
+              "DocumentMoniker": "D:\\\u05E0\u05D7\u05DE\u05D9\\ProjectApiAngular\\server\\server\\SaleProfile.cs",
+              "RelativeDocumentMoniker": "server\\SaleProfile.cs",
+              "ToolTip": "D:\\\u05E0\u05D7\u05DE\u05D9\\ProjectApiAngular\\server\\server\\SaleProfile.cs",
+              "RelativeToolTip": "server\\SaleProfile.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAowEsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-18T23:16:02.867Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "D:\\\u05E0\u05D7\u05DE\u05D9\\ProjectApiAngular\\server\\server\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "server\\Controllers\\UserController.cs",
+              "ToolTip": "D:\\\u05E0\u05D7\u05DE\u05D9\\ProjectApiAngular\\server\\server\\Controllers\\UserController.cs",
+              "RelativeToolTip": "server\\Controllers\\UserController.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAowC8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-18T23:14:33.776Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "UserModel.cs",
+              "DocumentMoniker": "D:\\\u05E0\u05D7\u05DE\u05D9\\ProjectApiAngular\\server\\server\\Models\\UserModel.cs",
+              "RelativeDocumentMoniker": "server\\Models\\UserModel.cs",
+              "ToolTip": "D:\\\u05E0\u05D7\u05DE\u05D9\\ProjectApiAngular\\server\\server\\Models\\UserModel.cs",
+              "RelativeToolTip": "server\\Models\\UserModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-18T22:53:20.881Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "UserBLL.cs",
+              "DocumentMoniker": "D:\\\u05E0\u05D7\u05DE\u05D9\\ProjectApiAngular\\server\\server\\BLL\\UserBLL.cs",
+              "RelativeDocumentMoniker": "server\\BLL\\UserBLL.cs",
+              "ToolTip": "D:\\\u05E0\u05D7\u05DE\u05D9\\ProjectApiAngular\\server\\server\\BLL\\UserBLL.cs",
+              "RelativeToolTip": "server\\BLL\\UserBLL.cs",
+              "ViewState": "AgIAADQAAAAAAAAAAAAgwE8AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-18T22:44:17.481Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "UserDal.cs",
+              "DocumentMoniker": "D:\\\u05E0\u05D7\u05DE\u05D9\\ProjectApiAngular\\server\\server\\DAL\\UserDal.cs",
+              "RelativeDocumentMoniker": "server\\DAL\\UserDal.cs",
+              "ToolTip": "D:\\\u05E0\u05D7\u05DE\u05D9\\ProjectApiAngular\\server\\server\\DAL\\UserDal.cs",
+              "RelativeToolTip": "server\\DAL\\UserDal.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAowCsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-18T22:43:19.07Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

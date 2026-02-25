@@ -1,0 +1,87 @@
+<p-toast></p-toast>
+
+
+    <div class="surface-card glass-card shadow-4 w-11 md:w-8 lg:w-4">
+        @if (errorMessage()) {
+        <div class="bg-red-100 border-1 border-red-400 text-red-900 p-3 border-round mb-4 flex align-items-center gap-2"
+            role="alert">
+            <i class="pi pi-exclamation-circle text-xl text-red-600"></i>
+            <span class="font-medium">{{ errorMessage() }}</span>
+        </div>}
+        @if (successMessage()) {
+        <div class="bg-red-100 border-1 border-red-400 text-red-900 p-3 border-round mb-4 flex align-items-center gap-2"
+            role="alert">
+            <i class="pi pi-exclamation-circle text-xl text-red-600"></i>
+            <span class="font-medium">{{ successMessage() }}</span>
+        </div>}
+
+        <div class="text-center mb-5">
+            <div class="text-primary text-4xl font-bold mb-2">הרשמה למכירה הגדולה</div>
+            <span class="text-700 text-lg font-medium">הצטרפו עכשיו ותוכלו לזכות בפרסים!</span>
+        </div>
+
+        <form [formGroup]="frmRegister" (ngSubmit)="saveUser()" class="p-fluid">
+
+            <div class="formgrid grid">
+                <div class="field col-12 md:col-6 mb-4">
+                    <span class="p-input-icon-left w-full">
+                        <i class="pi pi-user"></i>
+                        <input id="fname" type="text" pInputText formControlName="firstName" placeholder="שם פרטי" />
+                    </span>
+                    <small *ngIf="frmRegister.get('firstName')?.invalid && frmRegister.get('firstName')?.touched"
+                        class="p-error block mt-1">שדה חובה</small>
+                </div>
+                <div class="field col-12 md:col-6 mb-4">
+                    <span class="p-input-icon-left w-full">
+                        <i class="pi pi-user"></i>
+                        <input id="lname" type="text" pInputText formControlName="lastName" placeholder="שם משפחה" />
+                    </span>
+                    <small *ngIf="frmRegister.get('lastName')?.invalid && frmRegister.get('lastName')?.touched"
+                        class="p-error block mt-1">שדה חובה</small>
+                </div>
+            </div>
+
+            <div class="field mb-4">
+                <span class="p-input-icon-left w-full">
+                    <i class="pi pi-envelope"></i>
+                    <input id="email" type="text" pInputText formControlName="email" placeholder="אימייל" />
+                </span>
+                <div *ngIf="frmRegister.get('email')?.invalid && frmRegister.get('email')?.touched" class="mt-1">
+                    <small *ngIf="frmRegister.get('email')?.errors?.['required']" class="p-error block">שדה חובה</small>
+                    <small *ngIf="frmRegister.get('email')?.errors?.['email']" class="p-error block">כתובת לא
+                        תקינה</small>
+                </div>
+            </div>
+
+            <div class="field mb-4">
+                <p-password id="password" formControlName="password" [toggleMask]="true" [feedback]="false"
+                    placeholder="סיסמה">
+                </p-password>
+                <div *ngIf="frmRegister.get('password')?.invalid && frmRegister.get('password')?.touched" class="mt-1">
+                    <small *ngIf="frmRegister.get('password')?.errors?.['required']" class="p-error block">שדה
+                        חובה</small>
+                    <small *ngIf="frmRegister.get('password')?.errors?.['minlength']" class="p-error block">מינימום 8
+                        תווים</small>
+                </div>
+            </div>
+
+            <div class="field mb-4">
+                <span class="p-input-icon-left w-full">
+                    <i class="pi pi-phone"></i>
+                    <input id="phone" type="text" pInputText formControlName="phone" placeholder="טלפון נייד" />
+                </span>
+                <small *ngIf="frmRegister.get('phone')?.invalid && frmRegister.get('phone')?.touched"
+                    class="p-error block mt-1">שדה חובה</small>
+            </div>
+
+            <button pButton label="סיום הרשמה" class="w-full mt-3 custom-gold-btn" [disabled]="frmRegister.invalid"></button>
+
+            <div class="mt-5 text-center">
+                <span class="text-white font-medium" style="text-shadow: 0 1px 2px rgba(0,0,0,0.3);">כבר רשומים? </span>
+                <a routerLink="/login" class="font-bold no-underline hover:underline cursor-pointer"
+                    style="color: #ffca80;">היכנסו כאן</a>
+
+            </div>
+
+        </form>
+    </div>

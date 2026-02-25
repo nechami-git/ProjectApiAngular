@@ -1,0 +1,70 @@
+/* Donor.scss */
+:host {
+  display: block;
+  width: 100%;
+}
+
+/* --- התאמות ל-PrimeNG --- */
+::ng-deep {
+    /* טבלה */
+    .custom-table {
+        .p-datatable-header {
+            background: transparent;
+            border: none;
+        }
+
+        .p-datatable-thead > tr > th {
+            background-color: rgba(128, 0, 32, 0.05); /* Primary low alpha */
+            color: var(--primary-color);
+            font-weight: 800;
+            border-bottom: 2px solid var(--secondary-color);
+            padding: 1.2rem;
+        }
+
+        .p-datatable-tbody > tr {
+            background: transparent;
+            color: var(--text-main);
+            transition: background-color 0.2s;
+
+            &:hover {
+                background-color: rgba(194, 147, 94, 0.15) !important;
+            }
+
+            > td {
+                padding: 1rem;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+            }
+        }
+    }
+
+    /* Toast Styles */
+    .p-toast {
+        font-family: 'Rubik', sans-serif;
+        opacity: 0.95;
+        
+        .p-toast-message {
+            border: none !important;
+            border-radius: 12px !important;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15) !important;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(10px);
+            color: white !important;
+            
+            .p-toast-message-icon { font-size: 1.5rem; }
+            .p-toast-summary { font-weight: 700; font-size: 1.1rem; }
+            .p-toast-detail { font-weight: 400; margin-top: 4px; }
+        }
+
+        .p-toast-message-error {
+            background: linear-gradient(90deg, var(--primary-color) 0%, #2c0000 100%) !important;
+            border-right: 6px solid #ff4d4d !important;
+            .p-toast-message-icon { color: #ff4d4d !important; }
+        }
+
+        .p-toast-message-success {
+            background: linear-gradient(90deg, #1e1e1e 0%, #2d2d2d 100%) !important;
+            border-right: 6px solid var(--secondary-color) !important;
+            .p-toast-message-icon { color: var(--secondary-color) !important; }
+        }
+    }
+}

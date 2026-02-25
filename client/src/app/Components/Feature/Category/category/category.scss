@@ -1,0 +1,80 @@
+/* category.scss */
+:host {
+    display: block;
+    min-height: 100vh;
+}
+
+/* --- מיכל ראשי --- */
+.main-container {
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* כרטיס זכוכית כללי */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: var(--glass-border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* --- כרטיס קטגוריה --- */
+.gift-card {
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(15px);
+    border: var(--glass-border);
+    border-radius: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.gift-card.hover-effect:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* עיצוב כותרות */
+.header-text h1 {
+    color: var(--primary-color);
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+/* אנימציית כניסה */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Toast Styles */
+::ng-deep .p-toast {
+    font-family: 'Rubik', sans-serif;
+    opacity: 0.95;
+    
+    .p-toast-message {
+        border: none !important;
+        border-radius: 12px !important;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15) !important;
+        margin-bottom: 1rem;
+        backdrop-filter: blur(10px);
+        color: white !important;
+        
+        .p-toast-message-icon { font-size: 1.5rem; }
+        .p-toast-summary { font-weight: 700; font-size: 1.1rem; }
+        .p-toast-detail { font-weight: 400; margin-top: 4px; }
+    }
+
+    .p-toast-message-error {
+        background: linear-gradient(90deg, var(--primary-color) 0%, #2c0000 100%) !important;
+        border-right: 6px solid #ff4d4d !important;
+        .p-toast-message-icon { color: #ff4d4d !important; }
+    }
+
+    .p-toast-message-success {
+        background: linear-gradient(90deg, #1e1e1e 0%, #2d2d2d 100%) !important;
+        border-right: 6px solid var(--secondary-color) !important;
+        .p-toast-message-icon { color: var(--secondary-color) !important; }
+    }
+}

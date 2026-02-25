@@ -1,0 +1,66 @@
+
+    
+    <p-toast position="top-center" [baseZIndex]="10000" [style]="{marginTop: '80px'}"></p-toast>
+
+    <div class="main-container w-10 lg:w-8 mx-auto pt-8"> <div class="glass-card search-header mb-5 p-4">
+            <div class="flex flex-column md:flex-row justify-content-between align-items-center gap-3">
+                
+                <div class="header-text">
+                    <h1 class="m-0 text-primary font-bold">הקטגוריות שלנו</h1>
+                </div>
+                
+                <div class="filter-group flex flex-wrap gap-2 justify-content-end align-items-center">
+                    <button pButton icon="pi pi-plus" label="קטגוריה חדשה" 
+                            class="p-button-rounded custom-gold-btn" 
+                            (click)="showAddDialog()"></button>
+                </div>
+
+            </div>
+        </div>
+
+        <p-dataView #dv [value]="categories" [paginator]="true" [rows]="9" layout="grid">
+
+            <ng-template let-items pTemplate="gridItem">
+                <div class="grid grid-nogutter w-full">
+                    <div class="col-12 md:col-6 lg:col-4 p-3" *ngFor="let cat of items">
+                        
+                        <div class="gift-card surface-card shadow-2 p-3 border-round h-full text-center hover-effect">
+                            
+                            <div class="gift-image-container relative mb-3 flex align-items-center justify-content-center bg-gray-100 border-round" style="height: 150px;">
+                                <i class="pi pi-tags text-6xl" style="color: #c2935e;"></i>
+                            </div>
+
+                            <div class="gift-details">
+                                <div class="text-2xl font-bold text-900 mb-2">{{ cat.name }}</div>
+                                <div class="text-600 mb-3">מזהה קטגוריה: {{ cat.id }}</div>
+
+                                <div class="flex gap-2 justify-content-center mt-3">
+                                    <button pButton icon="pi pi-trash" class="p-button-rounded p-button-text p-button-danger" (click)="deleteCategory(cat.id)"></button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </ng-template>
+
+            <ng-template pTemplate="empty">
+                <div class="text-center p-5 w-full text-white text-xl">לא נמצאו קטגוריות...</div>
+            </ng-template>
+
+        </p-dataView>
+    </div>
+
+
+<p-dialog header="הוספת קטגוריה חדשה" [(visible)]="displayDialog" [modal]="true" [style]="{width: '450px'}" [draggable]="false" [resizable]="false" styleClass="glass-dialog">
+    <div class="flex flex-column gap-3 pt-3">
+        <div class="field">
+            <label for="name" class="font-bold block mb-2">שם הקטגוריה</label>
+            <input type="text" pInputText id="name" [(ngModel)]="newCategoryName" class="w-full" autofocus />
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton label="ביטול" icon="pi pi-times" class="p-button-text" (click)="displayDialog=false"></button>
+        <button pButton label="שמור" icon="pi pi-check" class="custom-gold-btn" (click)="addCategory()"></button>
+    </ng-template>
+</p-dialog>

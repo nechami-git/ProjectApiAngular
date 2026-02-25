@@ -1,0 +1,225 @@
+/* raffele.scss */
+:host {
+  display: block;
+  width: 100%;
+}
+
+/* --- קונטיינר ראשי --- */
+.raffle-content-container {
+    width: 90%; 
+    max-width: 1400px; 
+    margin: 2rem auto 3rem auto; 
+    padding-bottom: 4rem;
+    
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* --- כותרת וחיפוש --- */
+.glass-header {
+    background-color: var(--glass-bg);
+    border: var(--glass-border);
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(15px);
+    margin-bottom: 2rem;
+    padding: 1.5rem 2rem;
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+
+    .header-title {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        
+        i { font-size: 2.5rem; color: var(--secondary-color); }
+        
+        div {
+            h1 { margin: 0; color: var(--primary-color); font-size: 2rem; font-weight: 800; }
+            p { margin: 0; color: var(--text-secondary); font-size: 0.9rem; }
+        }
+    }
+
+    .header-actions {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        
+        input {
+            /* עיצוב נוסף מעבר למחלקות ב-HTML */
+            background-color: white !important;
+            border: 1px solid rgba(0,0,0,0.1) !important;
+            
+            &:focus {
+                border-color: var(--secondary-color) !important;
+                box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2) !important;
+            }
+        }
+    }
+}
+
+/* --- גריד המתנות --- */
+.gifts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* --- כרטיס מתנה --- */
+.gift-card {
+    background-color: var(--glass-bg);
+    border: var(--glass-border);
+    backdrop-filter: blur(5px);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+
+    &.winner-declared {
+        border: 2px solid #4caf50;
+        background: rgba(235, 255, 235, 0.9);
+        
+        .gift-image-wrapper::after {
+            content: "הוגרל";
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            font-size: 3rem;
+            font-weight: 900;
+            color: rgba(76, 175, 80, 0.8);
+            border: 4px solid rgba(76, 175, 80, 0.8);
+            padding: 0.5rem 2rem;
+            border-radius: 10px;
+            pointer-events: none;
+            z-index: 10;
+        }
+    }
+
+    /* תמונה */
+    .gift-image-wrapper {
+        position: relative;
+        height: 200px;
+        background: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+
+        img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .no-image {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #ccc;
+            i { font-size: 3rem; margin-bottom: 0.5rem; }
+        }
+
+        .category-tag {
+            position: absolute;
+            bottom: 10px; right: 10px;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+    }
+
+    /* תוכן הכרטיס */
+    .gift-content {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+
+        h3 {
+            margin: 0 0 1rem 0;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+            
+            .stat-item {
+                background: rgba(255,255,255,0.5);
+                padding: 8px;
+                border-radius: 10px;
+                text-align: center;
+                
+                span.label { display: block; font-size: 0.75rem; color: var(--text-secondary); }
+                span.val { font-weight: bold; color: var(--text-main); }
+            }
+        }
+
+        .winner-section {
+            margin-top: auto;
+            text-align: center;
+            padding: 1rem;
+            background: rgba(76, 175, 80, 0.1);
+            border-radius: 10px;
+            color: #2e7d32;
+            
+            i { font-size: 1.5rem; margin-bottom: 0.5rem; display: block; }
+            strong { font-size: 1.2rem; display: block; }
+        }
+        
+        .raffle-actions {
+            margin-top: auto;
+            text-align: center;
+        }
+    }
+}
+
+/* --- אנימציית הגרלת --- */
+.slot-machine-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--secondary-light);
+    backdrop-filter: blur(5px);
+    
+    i { 
+        font-size: 4rem; 
+        animation: spin 0.5s infinite linear;
+        margin-bottom: 1rem;
+        color: var(--secondary-color);
+        text-shadow: 0 0 10px rgba(194, 147, 94, 0.6);
+    }
+    span { 
+        font-size: 1.5rem; 
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+}
+
+@keyframes spin { 
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,150 @@
+<p-toast></p-toast>
+
+<div class="purchases-content-container" dir="rtl">
+    
+    <!-- כותרת ראשית מזכוכית -->
+    <div class="glass-header mb-4">
+        <div class="header-title animate-fadein">
+            <i class="pi pi-shopping-cart text-gold"></i>
+            <div>
+                <h1>ניטור רכישות</h1>
+                <p>עקוב אחר המכירות ונהל את פרטי הרוכשים בזמן אמת</p>
+            </div>
+        </div>
+
+        <div class="header-actions">
+            
+            <span class="p-input-icon-left w-full md:w-auto">
+                <i class="pi pi-search"></i>
+                <input type="text" pInputText placeholder="חיפוש קונה או מתנה..." 
+                       [(ngModel)]="searchText" (input)="filterPurchases()"
+                       class="w-full md:w-20rem border-round-3xl py-2 px-3 surface-100" />
+            </span>
+
+            <p-dropdown 
+                [(ngModel)]="filter.sortBy" 
+                [options]="sortOptions" 
+                optionLabel="label" 
+                optionValue="value"
+                placeholder="מיון לפי"
+                (onChange)="getAllPurchases()"
+                styleClass="w-full md:w-15rem border-round-3xl surface-100">
+            </p-dropdown>
+
+            <button pButton label="דוח מלא" icon="pi pi-file-excel" 
+                    class="p-button-rounded p-button-success p-button-outlined font-bold"
+                    (click)="generateSalesReport()"></button>
+        </div>
+    </div>
+
+    <!-- כרטיסי סטטיסטיקה -->
+    <div class="stats-grid animate-fadeinup">
+        <div class="stat-card">
+            <div class="stat-icon gold">
+                <i class="pi pi-shopping-bag"></i>
+            </div>
+            <div class="stat-content">
+                <span class="stat-value">{{groupedPurchases.length}}</span>
+                <span class="stat-label">מס׳ עסקאות</span>
+            </div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-icon green">
+                <i class="pi pi-money-bill"></i>
+            </div>
+            <div class="stat-content">
+                <span class="stat-value">{{calculateTotalRevenue() | currency:'ILS'}}</span>
+                <span class="stat-label">סה״כ הכנסות</span>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon blue">
+                <i class="pi pi-users"></i>
+            </div>
+            <div class="stat-content">
+                <span class="stat-value">{{filteredPurchases.length}}</span>
+                <span class="stat-label">כרטיסים שנמכרו</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- רשימת רכישות לפי תאריך -->
+    <div *ngFor="let group of groupedPurchases" class="date-group animate-fadeinup animation-duration-500">
+        
+        <!-- כותרת הקבוצה -->
+        <div class="date-header">
+            <div class="date-label">
+                <i class="pi pi-calendar text-gold text-xl"></i>
+                <span>{{group.date | date:'dd/MM/yyyy'}}</span>
+                <span class="text-500 font-normal text-base mr-2">{{group.date | date:'HH:mm'}}</span>
+            </div>
+            <div class="group-summary">
+                <span class="font-bold text-primary ml-2">{{group.totalQuantity}} כרטיסים</span>
+                <span class="text-500">|</span>
+                <span class="font-bold text-green-600 mr-2">{{group.totalAmount | currency:'ILS'}}</span>
+            </div>
+        </div>
+
+        <!-- טבלת רכישות -->
+        <div class="glass-table">
+            <p-table [value]="group.purchases" [rowHover]="true" responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 60px">#</th>
+                        <th>מתנה</th>
+                        <th>שם הרוכש</th>
+                        <th>פרטי קשר</th>
+                        <th class="text-center">כמות</th>
+                        <th>מחיר ליחידה</th>
+                        <th>סה"כ</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-purchase>
+                    <tr>
+                        <td><span class="text-500 text-sm">#{{purchase.id}}</span></td>
+                        <td>
+                            <div class="flex align-items-center gap-2">
+                                <img *ngIf="purchase.giftImage" [src]="purchase.giftImage.startsWith('http') ? purchase.giftImage : 'https://localhost:7009/' + purchase.giftImage" class="gift-thumbnail shadow-1" onerror="this.style.display='none';" />
+                                <div *ngIf="!purchase.giftImage" class="gift-thumbnail flex align-items-center justify-content-center text-500 bg-gray-100">
+                                    <i class="pi pi-image"></i>
+                                </div>
+                                <span class="font-semibold">{{purchase.giftName}}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex align-items-center gap-2">
+                                <div class="buyer-avatar">
+                                    {{purchase.buyerName?.charAt(0).toUpperCase()}}
+                                </div>
+                                <span class="font-medium">{{purchase.buyerName}}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex flex-column gap-1 text-sm text-600">
+                                <span *ngIf="purchase.buyerEmail"><i class="pi pi-envelope text-primary ml-1"></i>{{purchase.buyerEmail}}</span>
+                                <span *ngIf="purchase.buyerPhone"><i class="pi pi-phone text-green-500 ml-1"></i>{{purchase.buyerPhone}}</span>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <span class="inline-flex align-items-center justify-content-center bg-blue-50 text-blue-700 px-2 py-1 border-round font-bold" style="min-width: 2rem">
+                                {{purchase.quantity}}
+                            </span>
+                        </td>
+                        <td>{{purchase.pricePerTicket | currency:'ILS'}}</td>
+                        <td><span class="text-green-600 font-bold">{{purchase.totalPrice | currency:'ILS'}}</span></td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+
+    <!-- מצב ריק -->
+    <div *ngIf="groupedPurchases.length === 0" class="flex flex-column align-items-center justify-content-center p-6 glass-header mt-4 opacity-80 text-center">
+        <i class="pi pi-search text-6xl text-400 mb-4 block"></i>
+        <h2 class="text-2xl text-700 mb-2">לא נמצאו רכישות</h2>
+        <p class="text-600 m-0">נסה לשנות את סינוני החיפוש או המתן לביצוע רכישות חדשות.</p>
+    </div>
+
+</div>

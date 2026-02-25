@@ -1,0 +1,177 @@
+/* gift-manage.scss */
+:host {
+  display: block;
+  width: 100%;
+}
+
+/* --- קונטיינר ראשי --- */
+.gift-content-container {
+    width: 90%; 
+    max-width: 1200px; 
+    margin: 2rem auto 0 auto; 
+    padding-bottom: 4rem;
+    
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* --- כרטיסי זכוכית --- */
+.glass-card {
+    background-color: var(--glass-bg);
+    border: var(--glass-border);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+/* --- כותרת --- */
+.search-header {
+    padding: 1.5rem 2rem;
+    .header-text h1 {
+        color: var(--primary-color);
+        font-size: 2rem;
+        text-shadow: 1px 1px 0px rgba(255,255,255,0.5);
+    }
+}
+
+/* --- כפתורי זהב (הוספה, סינון) --- */
+.custom-gold-btn {
+    /* Uses global styles broadly, adding specific tweaks if needed */
+    box-shadow: 0 4px 15px rgba(194, 147, 94, 0.4);
+    .p-button-icon { color: white !important; }
+}
+
+/* --- עיצוב פנימי (PrimeNG Override) --- */
+::ng-deep {
+    
+    /* 1. כפתורים עגולים בטבלה (Action Buttons) */
+    .action-circle-btn {
+        width: 3rem !important;
+        height: 3rem !important;
+        border-radius: 50% !important;
+        padding: 0 !important;
+        margin: 0 0.5rem;
+        background: white !important;
+        border: 1px solid rgba(0,0,0,0.1) !important;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        
+        .p-button-icon { font-size: 1.2rem; }
+
+        &:hover {
+            transform: scale(1.15) !important;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        &.edit-btn {
+            color: #f59e0b !important; /* כתום - נשאר */
+            &:hover { background: #fffbeb !important; border-color: #f59e0b !important; }
+        }
+
+        &.delete-btn {
+            color: #ef4444 !important; /* אדום - נשאר */
+            &:hover { background: #fef2f2 !important; border-color: #ef4444 !important; }
+        }
+    }
+
+    /* 2. שדות קלט (Inputs) */
+    .p-inputtext {
+        border-radius: 50px !important;
+        padding: 0.7rem 1.2rem;
+        background-color: rgba(255, 255, 255, 0.8) !important;
+        border: 1px solid #d4d4d4;
+        
+        &:focus {
+            border-color: var(--secondary-color) !important;
+            box-shadow: 0 0 0 2px rgba(194, 147, 94, 0.2) !important;
+        }
+    }
+
+    /* 3. טבלה */
+    .custom-table {
+        .p-datatable-header { background: transparent; border: none; }
+
+        .p-datatable-thead > tr > th {
+            background-color: rgba(128, 0, 32, 0.05); /* Primary color low opacity */
+            color: var(--primary-color);
+            font-weight: 800;
+            border-bottom: 2px solid var(--secondary-color);
+            padding: 1.2rem 1rem;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .p-datatable-tbody > tr {
+            background: transparent;
+            color: var(--text-main);
+            transition: background-color 0.2s;
+            &:hover { background-color: rgba(194, 147, 94, 0.15) !important; }
+            > td {
+                padding: 1rem;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+                vertical-align: middle;
+                text-align: center;
+            }
+        }
+        
+        .p-tag { border-radius: 20px; }
+        .p-badge { border-radius: 50%; width: 2.5rem; height: 2.5rem; line-height: 2.5rem; }
+    }
+
+    /* 4. תגיות וצבעים */
+    .p-tag.p-tag-info {
+        background-color: var(--primary-color) !important;
+        color: #fff8f0 !important;
+        border: 1px solid var(--secondary-color);
+        font-weight: 500;
+    }
+
+    .p-badge.p-badge-success {
+        background-color: var(--secondary-color) !important;
+        color: var(--primary-color) !important;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .p-badge-success:empty, 
+    .p-badge-success:contains("0") {
+       background-color: #e0e0e0 !important;
+       color: #757575 !important;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Toast Styles */
+::ng-deep .p-toast {
+    font-family: 'Rubik', sans-serif;
+    opacity: 0.95;
+    
+    .p-toast-message {
+        border: none !important;
+        border-radius: 12px !important;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15) !important;
+        margin-bottom: 1rem;
+        backdrop-filter: blur(10px);
+        color: white !important;
+        
+        .p-toast-message-icon { font-size: 1.5rem; }
+        .p-toast-summary { font-weight: 700; font-size: 1.1rem; }
+        .p-toast-detail { font-weight: 400; margin-top: 4px; }
+    }
+
+    .p-toast-message-error {
+        background: linear-gradient(90deg, var(--primary-color) 0%, #2c0000 100%) !important;
+        border-right: 6px solid #ff4d4d !important;
+        .p-toast-message-icon { color: #ff4d4d !important; }
+    }
+
+    .p-toast-message-success {
+        background: linear-gradient(90deg, #1e1e1e 0%, #2d2d2d 100%) !important;
+        border-right: 6px solid var(--secondary-color) !important;
+        .p-toast-message-icon { color: var(--secondary-color) !important; }
+    }
+}

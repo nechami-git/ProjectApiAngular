@@ -1,0 +1,55 @@
+/* login.scss */
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px); /* Full viewport height minus navbar to center vertically */
+    width: 100%;
+    padding: 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.surface-card {
+    /* Glassmorphism Card Style */
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: var(--glass-border);
+    border-radius: 24px;
+    padding: 3rem;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto; /* Center horizontally */
+    position: relative;
+    z-index: 20;
+    
+    /* Ensure content inside doesn't overflow */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ensure inputs are clearly visible on the glass background */
+::ng-deep .p-inputtext, 
+::ng-deep .p-password-input {
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: var(--text-main) !important;
+    border: 1px solid rgba(212, 175, 55, 0.3) !important;
+}
+
+::ng-deep .p-inputtext:focus,
+::ng-deep .p-password-input:focus {
+     border-color: var(--secondary-color) !important;
+     box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2) !important;
+}
+
+/* Title Styling */
+.text-center {
+    text-align: center !important;
+}
+
+.text-primary {
+    color: var(--primary-color) !important;
+}

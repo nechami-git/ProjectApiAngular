@@ -1,0 +1,85 @@
+<div class="my-purchases-container" dir="rtl">
+  
+  <!-- כותרת ראשית מזכוכית -->
+  <div class="glass-header animate-fadein">
+      <div class="header-title">
+          <i class="pi pi-briefcase text-gold"></i>
+          <div>
+              <h1>ההזמנות שלי</h1>
+              <p>מעקב אחר רכישות הכרטיסים והמתנות שלך</p>
+          </div>
+      </div>
+
+      <div class="header-stats" *ngIf="groupedPurchases.length > 0">
+          <div class="stat-item">
+              <span class="stat-value text-gold-dark">{{groupedPurchases.length}}</span>
+              <span class="stat-label">הזמנות</span>
+          </div>
+      </div>
+  </div>
+
+  <!-- גריד הזמנות -->
+  <div class="orders-grid" *ngIf="groupedPurchases.length > 0; else emptyState">
+    
+    <div *ngFor="let group of groupedPurchases; let i = index" 
+         class="order-card animate-fadeinup" 
+         [style.animation-delay]="i * 0.1 + 's'">
+      
+      <!-- כותרת הזמנה -->
+      <div class="order-header">
+        <div class="date-badge">
+            <i class="pi pi-calendar"></i>
+            {{ group.date | date: 'dd/MM/yyyy' }}
+        </div>
+        <div class="order-time flex align-items-center gap-2">
+            <i class="pi pi-clock text-400"></i>
+            {{ group.date | date: 'HH:mm' }}
+        </div>
+      </div>
+
+      <!-- פריטים בהזמנה -->
+      <div class="order-items">
+          <div *ngFor="let item of group.items" class="order-item">
+              <div class="item-img">
+                  <img *ngIf="item.giftImage" [src]="item.giftImage.startsWith('http') ? item.giftImage : 'https://localhost:7009/' + item.giftImage" class="w-full h-full border-round object-cover" onerror="this.style.display='none';">
+                  <i *ngIf="!item.giftImage" class="pi pi-gift text-2xl text-400"></i>
+              </div>
+              
+              <div class="item-info">
+                  <h4>{{ item.giftName }}</h4>
+                  <div class="item-meta">
+                      <span>{{ item.quantity }} כרטיסים</span>
+                      <span class="text-300">|</span>
+                      <span>{{ item.pricePerTicket | currency:'ILS' }} ליח'</span>
+                  </div>
+              </div>
+
+              <div class="item-price">
+                  {{ item.totalPrice | currency:'ILS' }}
+              </div>
+          </div>
+      </div>
+
+      <!-- סיכום הזמנה -->
+      <div class="order-footer">
+          <span class="total-label">סה"כ לתשלום:</span>
+          <span class="total-amount">{{ group.totalAmount | currency:'ILS' }}</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- מצב ריק -->
+  <ng-template #emptyState>
+    <div class="flex flex-column align-items-center justify-content-center p-6 glass-header mt-4 opacity-80 text-center">
+        <div class="p-4 border-circle bg-white-alpha-30 mb-4">
+            <i class="pi pi-shopping-bag text-6xl text-gold-dark opacity-50 block"></i>
+        </div>
+        <h2 class="text-2xl text-700 mb-2">טרם ביצעת רכישות</h2>
+        <p class="text-600 m-0 mb-4 max-w-30rem line-height-3">
+            זה הזמן לבחור את המתנות שחלמת עליהן! היכנס לקטלוג הכרטיסים והתחל להשתתף בהגרלות.
+        </p>
+    </div>
+  </ng-template>
+
+</div>

@@ -1,0 +1,90 @@
+<p-toast></p-toast>
+<p-confirmDialog [style]="{width: '450px'}" rejectLabel="לא" acceptLabel="כן"></p-confirmDialog>
+
+<div class="cart-content-container">
+
+    <div class="glass-card header-section">
+        <div class="flex flex-column xl:flex-row justify-content-between align-items-center gap-3 w-full">
+            
+            <div class="header-text">
+                <h1 class="font-bold">סל הקניות שלי 🛒</h1>
+            </div>
+
+            <div class="actions-group flex flex-wrap gap-3 justify-content-center xl:justify-content-end align-items-center" *ngIf="cartItems.length > 0">
+                
+                <div class="total-price-badge">
+                    <span>סה"כ לתשלום: </span>
+                    <span class="price">{{ totalAmount | currency:'ILS' }}</span>
+                </div>
+
+                <button pButton label="בצע רכישה" icon="pi pi-check" 
+                        class="custom-gold-btn p-button-rounded"
+                        (click)="checkout()"></button>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="cartItems.length === 0 && !isLoading" class="glass-card p-5 text-center empty-state">
+        <i class="pi pi-shopping-cart mb-3" style="font-size: 4rem; color: #c2935e; opacity: 0.7;"></i>
+        <h2 class="text-800 mb-3">הסל שלך ריק כרגע...</h2>
+        <button pButton label="חזור לקטלוג המתנות" icon="pi pi-arrow-right" 
+                class="p-button-text text-800 font-bold" 
+                [routerLink]="['/gifts']"></button>
+    </div>
+
+    <div class="glass-card p-4" *ngIf="cartItems.length > 0">
+        <p-table [value]="cartItems" [rowHover]="true"
+                 styleClass="p-datatable-gridlines custom-table" responsiveLayout="scroll">
+            
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>מתנה</th>
+                    <th>מחיר כרטיס</th>
+                    <th>כמות</th>
+                    <th>סה"כ</th>
+                    <th style="width: 100px; text-align: center;">פעולות</th>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-item>
+                <tr>
+                    <td>
+                        <div class="flex align-items-center gap-3">
+                            <img *ngIf="item.giftImage" [src]="item.giftImage.startsWith('http') ? item.giftImage : 'https://localhost:7009/' + item.giftImage" [alt]="item.giftName" 
+                                 width="50" height="50" class="shadow-2 border-round" style="object-fit: cover;" onerror="this.style.display='none';"/>
+                            
+                            <div *ngIf="!item.giftImage" class="empty-img-placeholder shadow-2 border-round">
+                                <i class="pi pi-gift"></i>
+                            </div>
+
+                            <span class="font-bold text-lg text-800">{{ item.giftName }}</span>
+                        </div>
+                    </td>
+                    <td class="text-lg">{{ item.ticketPrice | currency:'ILS' }}</td>
+                    <td>
+                        <p-inputNumber 
+                            [(ngModel)]="item.quantity" 
+                            [showButtons]="true" 
+                            buttonLayout="horizontal" 
+                            inputId="horizontal" 
+                            spinnerMode="horizontal" 
+                            [min]="1" [max]="100"
+                            decrementButtonClass="p-button-secondary p-button-text" 
+                            incrementButtonClass="p-button-secondary p-button-text" 
+                            incrementButtonIcon="pi pi-plus" 
+                            decrementButtonIcon="pi pi-minus"
+                            (onInput)="updateQuantity(item, $event.value)">
+                        </p-inputNumber>
+                    </td>
+                    <td class="font-bold text-xl text-900">{{ item.totalPrice | currency:'ILS' }}</td>
+                    <td style="text-align: center;">
+                        <button pButton icon="pi pi-trash" 
+                                class="p-button-rounded p-button-text p-button-danger hover-scale"
+                                (click)="deleteItem(item)" pTooltip="מחק פריט" tooltipPosition="top"></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+</div>

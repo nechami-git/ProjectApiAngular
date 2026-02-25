@@ -1,0 +1,191 @@
+<div class="gift-content-container" dir="rtl">
+    <p-toast position="top-right" [style]="{marginTop: '80px', zIndex: 99999}"></p-toast>
+    <p-confirmDialog [style]="{width: '450px'}" rejectLabel="לא" acceptLabel="כן"></p-confirmDialog>
+
+    <div class="glass-card search-header mb-4">
+        <div class="flex flex-column xl:flex-row justify-content-between align-items-center gap-3 w-full">
+
+            <div class="header-text">
+                <h1 class="m-0 font-bold">ניהול מתנות</h1>
+            </div>
+
+            <button pButton label="מתנה חדשה" icon="pi pi-plus" class="custom-gold-btn p-button-rounded"
+                (click)="openNew()"></button>
+        </div>
+
+        <p-divider styleClass="my-3 opacity-50"></p-divider>
+
+        <div class="filters-container grid p-fluid align-items-end">
+
+            <div class="col-12 md:col-3">
+                <span class="p-float-label">
+                    <input pInputText id="fName" [(ngModel)]="filter.name" [ngModelOptions]="{standalone: true}"
+                        (keyup.enter)="loadGifts()" />
+                    <label for="fName">שם המתנה</label>
+                </span>
+            </div>
+
+            <div class="col-12 md:col-3">
+                <span class="p-float-label">
+                    <input pInputText id="fDonor" [(ngModel)]="filter.donorName" [ngModelOptions]="{standalone: true}"
+                        (keyup.enter)="loadGifts()" />
+                    <label for="fDonor">שם התורם</label>
+                </span>
+            </div>
+
+            <div class="col-12 md:col-2">
+                <span class="p-float-label">
+                    <p-inputNumber id="fMin" [(ngModel)]="filter.purchaseCount" [ngModelOptions]="{standalone: true}"
+                        (keyup.enter)="loadGifts()" [min]="0"></p-inputNumber>
+                    <label for="fMin">רוכשים</label>
+                </span>
+            </div>
+
+            <div class="col-12 md:col-4 flex gap-2">
+                <button pButton label="סנן" icon="pi pi-filter" class="custom-gold-btn p-button-rounded flex-1"
+                    (click)="loadGifts()"></button>
+                <button pButton label="נקה" icon="pi pi-filter-slash"
+                    class="p-button-outlined p-button-rounded p-button-secondary bg-white flex-1"
+                    (click)="clearSearch()"></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="glass-card p-4">
+        <p-table [value]="gifts" [rows]="10" [paginator]="true" [tableStyle]="{'min-width': '75rem'}" [rowHover]="true"
+            dataKey="id" currentPageReportTemplate="מציג {first} עד {last} מתוך {totalRecords} מתנות"
+            [showCurrentPageReport]="true" styleClass="p-datatable-gridlines custom-table" responsiveLayout="scroll">
+
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="name">שם <p-sortIcon field="name"></p-sortIcon></th>
+                    <th>תמונה</th>
+                    <th pSortableColumn="ticketPrice">מחיר כרטיס <p-sortIcon field="ticketPrice"></p-sortIcon></th>
+                    <th pSortableColumn="price"> שווי בשוק<p-sortIcon field="price"></p-sortIcon></th>
+                    <th pSortableColumn="categoryName">קטגוריה <p-sortIcon field="categoryName"></p-sortIcon></th>
+                    <th pSortableColumn="donorName">תורם <p-sortIcon field="donorName"></p-sortIcon></th>
+                    <th class="text-center">משתתפים <p-sortIcon field="participantsCount"></p-sortIcon></th>
+                    <th class="text-center">פעולות</th>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-gift>
+                <tr>
+                    <td class="font-bold">{{gift.name}}</td>
+                    <td class="text-center">
+                        <div class="border-circle overflow-hidden shadow-2 inline-flex align-items-center justify-content-center bg-white"
+                            style="width: 50px; height: 50px;">
+                            <img [src]="gift.image" [alt]="gift.name" *ngIf="gift.image"
+                                style="width: 100%; height: 100%; object-fit: cover;" 
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"/>
+                            <i class="pi pi-gift text-2xl text-gray-400" [style.display]="gift.image ? 'none' : 'block'"></i>
+                        </div>
+                    </td>
+                    <td>{{gift.ticketPrice | currency:'ILS'}}</td>
+                    <td>{{gift.price | currency:'ILS'}}</td>
+                    <td><p-tag [value]="gift.categoryName" severity="info" styleClass="text-sm"></p-tag></td>
+                    <td>{{gift.donorName}}</td>
+                    <td class="text-center">
+                        <span class="p-badge p-badge-lg p-badge-success">{{gift.participantsCount}}</span>
+                    </td>
+
+                    <td class="text-center">
+                        <button pButton icon="pi pi-pencil" class="action-circle-btn edit-btn" (click)="editGift(gift)"
+                            pTooltip="ערוך מתנה" tooltipPosition="top"></button>
+
+                        <button pButton icon="pi pi-trash" class="action-circle-btn delete-btn"
+                            (click)="deleteGift(gift.id)" pTooltip="מחק מתנה" tooltipPosition="top"></button>
+                    </td>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="8" class="text-center p-5">
+                        <span class="text-xl text-600">לא נמצאו מתנות התואמות לחיפוש.</span>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+
+<p-dialog [(visible)]="giftDialog" [style]="{width: '550px'}" [header]="dialogHeader" [modal]="true"
+    styleClass="p-fluid" dir="rtl" [draggable]="false" [resizable]="false">
+    <ng-template pTemplate="content">
+        <form [formGroup]="frmGift" class="mt-4">
+
+            <div class="field mb-4">
+                <span class="p-float-label">
+                    <input type="text" pInputText id="name" formControlName="name" />
+                    <label for="name">שם המתנה <span class="text-red-500">*</span></label>
+                </span>
+            </div>
+
+            <div class="field mb-4">
+                <span class="p-float-label">
+                    <textarea id="description" pInputTextarea formControlName="description" rows="3"></textarea>
+                    <label for="description">תיאור</label>
+                </span>
+            </div>
+
+            <div class="formgrid grid">
+                <div class="field col-6 mb-4">
+                    <span class="p-float-label">
+                        <p-inputNumber id="ticketPrice" formControlName="ticketPrice" mode="currency" currency="ILS"
+                            locale="he-IL"></p-inputNumber>
+                        <label for="ticketPrice">מחיר כרטיס</label>
+                    </span>
+                </div>
+                <div class="field col-6 mb-4">
+                    <span class="p-float-label">
+                        <p-inputNumber id="price" formControlName="price" mode="currency" currency="ILS"
+                            locale="he-IL"></p-inputNumber>
+                        <label for="price">שווי בשוק</label>
+                    </span>
+                </div>
+            </div>
+
+            <div class="field mb-4">
+                <span class="p-float-label">
+                    <input type="text" pInputText id="image" formControlName="image" />
+                    <label for="image">תמונה</label>
+                </span>
+            </div>
+
+            <div class="formgrid grid">
+
+                <div class="field col-6 mb-4">
+                    <span class="p-float-label">
+                        <p-dropdown [options]="categories" formControlName="categoryId" optionLabel="name"
+                            optionValue="id" placeholder="בחר קטגוריה" [style]="{'width':'100%'}"
+                            appendTo="body"></p-dropdown>
+                        <label for="categoryId">קטגוריה</label>
+                    </span>
+                </div>
+
+                <div class="field col-6 mb-4">
+                    <span class="p-float-label">
+                        <p-dropdown [options]="donors" formControlName="donorId" optionLabel="firstName"
+                            optionValue="id" placeholder="בחר תורם" [style]="{'width':'100%'}" appendTo="body">
+                            <ng-template let-donor pTemplate="item">
+                                <div>{{donor.firstName}} {{donor.lastName}}</div>
+                            </ng-template>
+                            <ng-template let-donor pTemplate="selectedItem">
+                                <div>{{donor.firstName}} {{donor.lastName}}</div>
+                            </ng-template>
+                        </p-dropdown>
+                        <label for="donorId">תורם</label>
+                    </span>
+                </div>
+            </div>
+
+        </form>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton label="ביטול" icon="pi pi-times" class="p-button-text text-600" (click)="hideDialog()"></button>
+        <button pButton label="שמור" icon="pi pi-check" class="custom-gold-btn" (click)="saveGift()"
+            [disabled]="frmGift.invalid"></button>
+    </ng-template>
+</p-dialog>

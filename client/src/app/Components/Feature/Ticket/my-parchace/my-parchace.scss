@@ -1,0 +1,257 @@
+/* my-parchace.scss */
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.my-purchases-container {
+  padding: 2rem;
+  color: var(--text-main);
+  min-height: 80vh;
+
+  // כותרת זכוכית
+  .glass-header {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: var(--glass-border);
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--secondary-color), var(--secondary-light));
+    }
+
+    .header-title {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+
+      i {
+        font-size: 3rem;
+        color: var(--secondary-color);
+        filter: drop-shadow(0 2px 4px rgba(212, 175, 55, 0.3));
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin: 0;
+        color: var(--primary-color);
+        letter-spacing: -0.5px;
+      }
+
+      p {
+        margin: 0.5rem 0 0;
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+      }
+    }
+    
+    .header-stats {
+        display: flex;
+        gap: 2rem;
+        
+        .stat-item {
+            text-align: center;
+            
+            .stat-value {
+                display: block;
+                font-size: 1.8rem;
+                font-weight: 800;
+                color: var(--secondary-color);
+            }
+            .stat-label {
+                font-size: 0.9rem;
+                color: var(--text-secondary);
+            }
+        }
+    }
+  }
+
+  // גריד הזמנות
+  .orders-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+
+  // כרטיס הזמנה
+  .order-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+      background: rgba(255, 255, 255, 0.9);
+      border-color: rgba(212, 175, 55, 0.3);
+    }
+
+    .order-header {
+      background: rgba(255, 255, 255, 0.5);
+      padding: 1.2rem;
+      border-bottom: 1px dashed rgba(0,0,0,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .date-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        background: rgba(255, 255, 255, 0.8);
+        padding: 0.4rem 0.8rem;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        border: 1px solid rgba(0,0,0,0.05);
+
+        i { color: var(--secondary-color); }
+      }
+
+      .order-time {
+        font-size: 0.85rem;
+        color: #888;
+      }
+    }
+
+    .order-items {
+      padding: 1.2rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      .order-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.8rem;
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 12px;
+        transition: background 0.2s;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .item-img {
+          width: 50px;
+          height: 50px;
+          border-radius: 10px;
+          object-fit: cover;
+          border: 2px solid white;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+          background: #f8f9fa;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #ccc;
+        }
+
+        .item-info {
+          flex-grow: 1;
+          
+          h4 {
+            margin: 0 0 0.3rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-main);
+          }
+          
+          .item-meta {
+            display: flex;
+            gap: 0.8rem;
+            font-size: 0.85rem;
+            color: #666;
+          }
+        }
+
+        .item-price {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+      }
+    }
+
+    .order-footer {
+        padding: 1.2rem;
+        background: linear-gradient(to bottom, rgba(255,255,255,0.5), rgba(255,255,255,0.8));
+        border-top: 1px solid rgba(0,0,0,0.05);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        .total-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .total-amount {
+            font-size: 1.4rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--secondary-color), var(--secondary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+  }
+
+  // אנימציות
+  .animate-fadein {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+  
+  .animate-fadeinup {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+    
+    // Staggered animation for grid items
+    @for $i from 1 through 10 {
+        &:nth-child(#{$i}) {
+            animation-delay: #{$i * 0.1}s;
+        }
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

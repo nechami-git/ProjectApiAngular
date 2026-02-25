@@ -1,0 +1,51 @@
+<p-toast></p-toast>
+  
+<div class="surface-card glass-card shadow-4 w-11 md:w-8 lg:w-4">
+         @if (errorMessage()) {
+            <div class="bg-red-100 border-1 border-red-400 text-red-900 p-3 border-round mb-4 flex align-items-center gap-2"
+                role="alert">
+                <i class="pi pi-exclamation-circle text-xl text-red-600"></i>
+                <span class="font-medium">{{ errorMessage() }}</span>
+            </div>}
+
+        <div class="text-center mb-5">
+            <div class="text-primary text-4xl font-bold mb-2">ברוכים הבאים!</div>
+            <span class="text-700 text-lg font-medium">היכנסו למערכת המכירה הסינית</span>
+        </div>
+
+        <form [formGroup]="frmLogin" (ngSubmit)="enter()" class="p-fluid">
+
+            <div class="field mb-4">
+                <span class="p-input-icon-left w-full">
+                    <i class="pi pi-envelope"></i>
+                    <input id="email" type="text" pInputText formControlName="email" placeholder="אימייל" />
+                </span>
+                <div *ngIf="frmLogin.get('email')?.invalid && frmLogin.get('email')?.touched" class="mt-1">
+                    <small *ngIf="frmLogin.get('email')?.errors?.['required']" class="p-error block">שדה חובה</small>
+                    <small *ngIf="frmLogin.get('email')?.errors?.['email']" class="p-error block">כתובת לא תקינה</small>
+                </div>
+            </div>
+
+            <div class="field mb-4">
+                <p-password
+                    id="password"
+                    formControlName="password"
+                    [toggleMask]="true"
+                    [feedback]="false"
+                    placeholder="סיסמה">
+                </p-password>
+                <div *ngIf="frmLogin.get('password')?.invalid && frmLogin.get('password')?.touched" class="mt-1">
+                    <small *ngIf="frmLogin.get('password')?.errors?.['required']" class="p-error block">שדה חובה</small>
+                    <small *ngIf="frmLogin.get('password')?.errors?.['minlength']" class="p-error block">מינימום 8 תווים</small>
+                </div>
+            </div>
+
+            <button pButton label="כניסה למערכת" class="w-full mt-3 custom-gold-btn" [disabled]="frmLogin.invalid"></button>
+
+            <div class="mt-5 text-center">
+                <span class="text-white font-medium" style="text-shadow: 0 1px 2px rgba(0,0,0,0.3);">עדיין לא נרשמתם? </span>
+                <a routerLink="/register" class="font-bold no-underline hover:underline cursor-pointer" style="color: #ffca80;">להרשמה לחצו כאן</a>
+            </div>
+
+        </form>
+    </div>

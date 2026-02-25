@@ -1,0 +1,191 @@
+/* gift-list.scss */
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+/* --- קונטיינר הראשי --- */
+.main-container {
+    width: 90%;
+    max-width: 1400px; /* Wider to accommodate 4 columns beautifully */
+    margin: 2rem auto;
+    position: relative;
+    z-index: 10;
+    
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* Header Enhancements */
+.search-header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+    
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 45px -10px rgba(0,0,0,0.12);
+    }
+}
+
+.bg-gradient-gold {
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--primary-color) 100%);
+    opacity: 0.8;
+}
+
+/* --- כרטיס מתנה --- */
+.gift-card {
+    background-color: var(--glass-bg) !important;
+    border: var(--glass-border);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, box-shadow 0.3s;
+    
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    /* תמונה ומיכל */
+    .gift-image-container {
+        position: relative;
+        height: 220px;
+        background: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        
+        img { width: 100%; height: 100%; object-fit: cover; }
+        
+        /* טיקט מחיר */
+        .price-tag {
+            position: absolute;
+            top: 10px; 
+            left: 10px;
+            
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: #fff;
+            
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+            z-index: 2;
+            
+            i { font-size: 0.7rem; margin-left: 4px; }
+        }
+    }
+
+    /* פרטי מתנה */
+    .gift-details {
+        padding: 1.5rem;
+        text-align: center;
+        
+        .text-xl { 
+            color: var(--primary-color);
+            font-size: 1.4rem; font-weight: bold; margin-bottom: 0.5rem; 
+        }
+        .text-600 { color: var(--text-secondary); font-size: 0.95rem; }
+    }
+
+    /* Beautiful Price Badge */
+    .gift-price-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        background: linear-gradient(135deg, #d4af37, #f3e5ab, #d4af37);
+        border-radius: 50px;
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        transition: all 0.3s ease;
+        
+        &:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+        }
+        
+        i {
+            color: #fff;
+            font-size: 1.1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .price-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            letter-spacing: 0.5px;
+        }
+        
+        .currency {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+    }
+}
+
+/* --- כפתורי זהב --- */
+/* (Note: Global .custom-gold-btn in styles.scss handles the gradient) */
+
+/* --- אנימציית כניסה --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- עיצוב Toast --- */
+::ng-deep .p-toast {
+    font-family: 'Rubik', sans-serif;
+    opacity: 0.95;
+    
+    .p-toast-message {
+        border: none !important;
+        border-radius: 12px !important;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15) !important;
+        margin-bottom: 1rem;
+        backdrop-filter: blur(10px);
+        color: white !important;
+        
+        .p-toast-message-icon {
+            font-size: 1.5rem;
+        }
+
+        .p-toast-summary {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .p-toast-detail {
+            font-weight: 400;
+            margin-top: 4px;
+        }
+    }
+
+    .p-toast-message-error {
+        background: linear-gradient(90deg, var(--primary-color) 0%, #2c0000 100%) !important;
+        border-right: 6px solid #ff4d4d !important;
+        
+        .p-toast-message-icon {
+            color: #ff4d4d !important;
+        }
+    }
+
+    .p-toast-message-success {
+        background: linear-gradient(90deg, #1e1e1e 0%, #2d2d2d 100%) !important;
+        border-right: 6px solid var(--secondary-color) !important;
+        
+        .p-toast-message-icon {
+            color: var(--secondary-color) !important;
+        }
+    }
+}

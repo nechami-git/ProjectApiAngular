@@ -1,0 +1,146 @@
+<!-- רקע ואנימציות -->
+<div class="app-background">
+  <div class="floating-particles">
+    <span class="heart"></span>
+    <span class="gift"></span>
+    <span class="heart"></span>
+    <span class="gift"></span>
+    <span></span>
+    <span class="gift"></span>
+  </div>
+</div>
+
+<div dir="rtl">
+    
+  <!-- Mobile Sidebar -->
+  <p-sidebar [(visible)]="sidebarVisible" position="right" [baseZIndex]="10000" styleClass="w-20rem glass-menu border-none">
+      <div class="flex flex-column h-full">
+          <div class="flex align-items-center gap-3 mb-5 px-2">
+               <img src="Logo/Logo.png" height="40">
+               <span class="font-bold text-xl text-primary">תפריט ראשי</span>
+          </div>
+          
+          <div class="flex flex-column gap-2 flex-grow-1">
+              <button pButton label="קטלוג מתנות" icon="pi pi-gift" routerLink="/gifts" (click)="sidebarVisible=false" class="p-button-text text-800 text-right w-full justify-content-start"></button>
+              
+              @if(authSrv.isAdmin()){
+                  <div class="border-top-1 surface-border my-3"></div>
+                  <span class="text-500 text-sm font-bold mb-2 px-3">ניהול מערכת</span>
+                  
+                  <button pButton label="הגרלות וזכיות" icon="pi pi-trophy" routerLink="/raffle" (click)="sidebarVisible=false" class="p-button-text text-700 text-right w-full justify-content-start"></button>
+                  <button pButton label="ניהול מתנות" icon="pi pi-box" routerLink="/giftManagement" (click)="sidebarVisible=false" class="p-button-text text-700 text-right w-full justify-content-start"></button>
+                  <button pButton label="ניהול תורמים" icon="pi pi-users" routerLink="/donors" (click)="sidebarVisible=false" class="p-button-text text-700 text-right w-full justify-content-start"></button>
+                  <button pButton label="ניהול קטגוריות" icon="pi pi-tags" routerLink="/categories" (click)="sidebarVisible=false" class="p-button-text text-700 text-right w-full justify-content-start"></button>
+                  <button pButton label="דוחות רכישה" icon="pi pi-chart-line" routerLink="/purchases" (click)="sidebarVisible=false" class="p-button-text text-700 text-right w-full justify-content-start"></button>
+              }
+          </div>
+
+          <div class="mt-auto border-top-1 surface-border pt-3">
+               @if(authSrv.isLoggedIn()){
+                   <button pButton label="התנתקות" icon="pi pi-sign-out" (click)="authSrv.logout(); sidebarVisible=false" class="p-button-text text-red-500 w-full justify-content-start font-bold"></button>
+               } @else {
+                   <button pButton label="התחברות" icon="pi pi-sign-in" routerLink="/login" (click)="sidebarVisible=false" class="p-button-text text-primary w-full justify-content-start font-bold"></button>
+               }
+          </div>
+      </div>
+  </p-sidebar>
+
+  <!-- NAVBAR -->
+
+  <p-toolbar styleClass="glass-toolbar border-none px-4 py-3">
+
+    <!-- L: Logo Area -->
+    <div class="p-toolbar-group-start flex gap-2 align-items-center">
+      <button pButton icon="pi pi-bars" class="p-button-rounded p-button-text text-800 md:hidden" (click)="sidebarVisible = true"></button>
+      
+      <a routerLink="/home" class="flex align-items-center gap-2 no-underline text-900 cursor-pointer transition-transform hover:scale-105">
+        <img src="Logo/Logo.png" alt="Logo" height="50" class="block" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));" />
+        <span class="font-bold text-2xl text-primary hidden md:block">Chinese Auction</span>
+      </a>
+    </div>
+
+
+    <!-- C: Main Navigation -->
+    <div class="p-toolbar-group-center hidden md:flex gap-1">
+        <button pButton label="קטלוג מתנות" icon="pi pi-gift" routerLink="/gifts" routerLinkActive="p-button-outlined" class="p-button-text text-800 font-medium"></button>
+        
+        <!-- Admin Menu Trigger -->
+        @if(authSrv.isAdmin()){
+            <button pButton label="ניהול מערכת" icon="pi pi-cog" (click)="managerMenu.toggle($event)" class="p-button-text text-purple-700 font-bold bg-purple-50 border-round-3xl"></button>
+            <p-menu #managerMenu [model]="adminGiftMenu!" [popup]="true" styleClass="w-15rem glass-menu"></p-menu>
+        }
+    </div>
+
+
+
+    <!-- R: User Actions -->
+    <div class="p-toolbar-group-end gap-3">
+      
+      @if(!authSrv.isLoggedIn()){
+        <div class="flex gap-2">
+            <button pButton label="התחברות" routerLink="/login" class="p-button-text text-700 font-medium"></button>
+            <button pButton label="הרשמה" routerLink="/register" class="custom-gold-btn px-4 border-round-3xl shadow-2"></button>
+        </div>
+      } @else {
+        <div class="flex align-items-center gap-3">
+            
+            <!-- Cart & Orders (User Only) -->
+            <!-- @if(!authSrv.isAdmin()){ -->
+                <button pButton icon="pi pi-shopping-cart" routerLink="/cart" pTooltip="עגלה" tooltipPosition="bottom" class="p-button-rounded p-button-text p-button-help text-xl w-3rem h-3rem"></button>
+                <button pButton icon="pi pi-history" routerLink="/my-purchases" pTooltip="הזמנות שלי" tooltipPosition="bottom" class="p-button-rounded p-button-text p-button-secondary text-xl w-3rem h-3rem"></button>
+            <!-- } -->
+
+            <div class="h-2rem w-1px bg-300 mx-2"></div>
+
+            <button pButton icon="pi pi-sign-out" (click)="authSrv.logout()" label="יציאה" class="p-button-text text-red-600 font-medium"></button>
+        
+            <div class="flex align-items-center gap-2 bg-primary-50 px-3 py-1 border-round-3xl cursor-pointer hover:surface-100 transition-colors">
+                <div class="bg-primary text-white border-circle w-2rem h-2rem flex align-items-center justify-content-center font-bold shadow-1">
+                    {{authSrv.currentUser()?.name?.[0] || 'U'}}
+                </div>
+                <span class="font-medium text-900">שלום, {{authSrv.currentUser()?.name}}</span>
+            </div>
+        </div>
+      }
+
+    </div>
+  </p-toolbar>
+
+  <main class="main-content">
+      <router-outlet></router-outlet>
+  </main>
+
+    <!-- Site Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div>
+                <h3>אודותינו</h3>
+                <p style="opacity: 0.8; line-height: 1.6; margin: 0;">ארגון החסד העולמי פועל למען רווחת הקהילה. המכירה הסינית היא אירוע הדגל שלנו.</p>
+            </div>
+            
+            <div>
+                <h3>קישורים מהירים</h3>
+                <ul style="margin: 0;">
+                    <li><a routerLink="/gifts">קטלוג מתנות</a></li>
+                    <li><a routerLink="/login">כניסה לאזור אישי</a></li>
+                    <li><a routerLink="/register">הרשמה</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3>צור קשר</h3>
+                <ul style="margin: 0;">
+                    <li><i class="pi pi-envelope ml-2"></i> info@chinesesale.org</li>
+                    <li><i class="pi pi-phone ml-2"></i> *1234</li>
+                    <li><i class="pi pi-map-marker ml-2"></i> ירושלים, ישראל</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            © 2026 כל הזכויות שמורות למכירה הסינית | פותח ע'י אלני ❤️
+        </div>
+    </footer>
+
+</div>
+
